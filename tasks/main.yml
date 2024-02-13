@@ -16,13 +16,13 @@
     clone: true
 
 - name: Run scan and output to file
-  shell: ./lynis audit system > /tmp/"$(hostname -s)_$(date +%d-%m-%Y).report"
+  ansible.builtin.command: ./lynis audit system > /tmp/"$(hostname -s)_$(date +%d-%m-%Y).report"
   args:
     chdir: /tmp/lynis
   become: true
 
 - name: Print out report
-  shell: cat /tmp/"$(hostname -s)_$(date +%d-%m-%Y).report"
+  ansible.builtin.command: cat /tmp/"$(hostname -s)_$(date +%d-%m-%Y).report"
   args:
     chdir: /tmp/lynis
 
