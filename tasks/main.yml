@@ -15,7 +15,7 @@
     dest: /tmp/lynis
     clone: true
 
-- name: ls -d /tmp/lynis*
+- name: ls -la /tmp/lynis*
   find:
     paths: /tmp
     patterns: "lynis*"
