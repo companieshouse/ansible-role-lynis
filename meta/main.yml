@@ -1,0 +1,29 @@
+galaxy_info:
+  role_name: lynis
+  author: ch
+  description: lynis scan
+  company: "CH"
+  license: "license (BSD, MIT)"
+  min_ansible_version: 2.1
+  platforms:
+    - name: Fedora
+      versions:
+        - all
+    - name: Debian
+      versions:
+        - wheezy
+        - jessie
+        - stretch
+        - buster
+        - bullseye
+        - bookworm
+    - name: Ubuntu
+      versions:
+        - precise
+        - trusty
+        - xenial
+        - bionic
+        - focal
+        - jammy
+  galaxy_tags: []
+dependencies: []

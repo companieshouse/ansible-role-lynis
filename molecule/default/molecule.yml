@@ -2,7 +2,7 @@
 driver:
   name: docker
 platforms:
-  - name: rockey
+  - name: instance
     image: "geerlingguy/docker-${MOLECULE_DISTRO:-rockylinux8}-ansible:latest"
     tmpfs:
       - /tmp
