@@ -1,0 +1,16 @@
+galaxy_info:
+  role_name: lynis
+  author: ch
+  description: lynis scan
+  company: "CH"
+  license: "license (BSD, MIT)"
+  min_ansible_version: 2.1
+  platform:
+    - name: rockey
+      versions:
+      - 8
+    - name: ubuntu
+      versions:
+      - 22.04
+  galaxy_tags: []
+dependencies: []
