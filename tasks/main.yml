@@ -1,31 +1,31 @@
 ---
-  - name: Install required system packages
-    package:
-      name:
+- name: Install required system packages
+  package:
+    name:
       - findutils
       - procps
       - passwd
       - hostname
-      state: latest
+    state: latest
 
-  - name: Clone git rep.
-    ansible.builtin.git:
-      repo: 'https://github.com/CISOfy/lynis.git'
-      dest: /tmp/lynis
-      clone: yes
+- name: Clone git rep
+  ansible.builtin.git:
+    repo: 'https://github.com/CISOfy/lynis.git'
+    dest: /tmp/lynis
+    clone: true
 
-  - name: Run scan and output to file.
-    shell: ./lynis audit system > /tmp/"$(hostname -s)_$(date +%d-%m-%Y).report"
-    args:
-     chdir: /tmp/lynis
-    become: true
+- name: Run scan and output to file
+  shell: ./lynis audit system > /tmp/"$(hostname -s)_$(date +%d-%m-%Y).report"
+  args:
+    chdir: /tmp/lynis
+  become: true
 
-  - name: Print out report.
-    shell: cat /tmp/"$(hostname -s)_$(date +%d-%m-%Y).report"
-    args:
-     chdir: /tmp/lynis
+- name: Print out report
+  shell: cat /tmp/"$(hostname -s)_$(date +%d-%m-%Y).report"
+  args:
+    chdir: /tmp/lynis
 
-  - name: Remove lynis folder from tmp.
-    file:
-      path: /tmp/lynis
-      state: absent
+- name: Remove lynis folder from tmp
+  file:
+    path: /tmp/lynis
+    state: absent
