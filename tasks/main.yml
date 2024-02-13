@@ -6,6 +6,7 @@
       - procps
       - passwd
       - hostname
+      - git
     state: latest
 
 - name: Clone git rep
