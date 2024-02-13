@@ -15,14 +15,17 @@
     dest: /tmp/lynis
     clone: true
 
-- name: Run scan and output to file
-  shell: ls -la /tmp/lynis
-
-- command: "ls /tmp/lynis"
-  register: dir_out
+- name: ls -d /tmp/lynis*
+  find:
+    paths: /tmp
+    patterns: "lynis*"
+    recurse: true
+    file_type: directory
+  register: found_directories
 
 - debug:
-  with_items: dir_out.stdout_lines
+    msg: "{{ [item.path] }} "
+  with_items: "{{ found_directories.files }}"
 
 # - name: Change file ownership, group and permissions
 #   ansible.builtin.file:
