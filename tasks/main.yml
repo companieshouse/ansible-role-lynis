@@ -32,7 +32,7 @@
   args:
     chdir: /tmp/lynis
 
-- name: Remove lynis folder from tmp
+- name: Remove lynis folder from tmp.
   file:
     path: /tmp/lynis
     state: absent
