@@ -15,24 +15,29 @@
     dest: /tmp/lynis
     clone: true
 
-- name: Change file ownership, group and permissions
-  ansible.builtin.file:
-    path: /tmp/lynis/
-    owner: root
-    group: root
-    mode: '0777'
-
 - name: Run scan and output to file
-  shell: ./lynis audit system > "$(hostname -s)_$(date +%d-%m-%Y).report"
+  shell: ls -la
   args:
     chdir: /tmp/lynis
 
-- name: Print out report
-  shell: cat /tmp/"$(hostname -s)_$(date +%d-%m-%Y).report"
-  args:
-    chdir: /tmp/lynis
+# - name: Change file ownership, group and permissions
+#   ansible.builtin.file:
+#     path: /tmp/lynis/
+#     owner: root
+#     group: root
+#     mode: '0777'
 
-- name: Remove lynis folder from tmp.
-  file:
-    path: /tmp/lynis
-    state: absent
+# - name: Run scan and output to file
+#   shell: ./lynis audit system > "$(hostname -s)_$(date +%d-%m-%Y).report"
+#   args:
+#     chdir: /tmp/lynis
+
+# - name: Print out report
+#   shell: cat /tmp/"$(hostname -s)_$(date +%d-%m-%Y).report"
+#   args:
+#     chdir: /tmp/lynis
+
+# - name: Remove lynis folder from tmp.
+#   file:
+#     path: /tmp/lynis
+#     state: absent
