@@ -18,6 +18,12 @@
 - name: Run scan and output to file
   shell: ls -la /tmp/lynis
 
+- command: "ls /tmp/lynis"
+  register: dir_out
+
+- debug:
+  with_items: dir_out.stdout_lines
+
 # - name: Change file ownership, group and permissions
 #   ansible.builtin.file:
 #     path: /tmp/lynis/
