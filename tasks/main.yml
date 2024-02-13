@@ -17,10 +17,10 @@
 
 - name: Change file ownership, group and permissions
   ansible.builtin.file:
-    path: /tmp/lynis
+    path: /tmp/lynis/
     owner: root
     group: root
-    mode: '0644'
+    mode: '0777'
 
 - name: Run scan and output to file
   shell: ./lynis audit system > "$(hostname -s)_$(date +%d-%m-%Y).report"
