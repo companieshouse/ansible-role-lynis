@@ -16,9 +16,7 @@
     clone: true
 
 - name: Run scan and output to file
-  shell: ls -la
-  args:
-    chdir: /tmp/lynis
+  shell: ls -la /tmp/lynis
 
 # - name: Change file ownership, group and permissions
 #   ansible.builtin.file:
