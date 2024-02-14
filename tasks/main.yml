@@ -15,7 +15,7 @@
     dest: $HOME/lynis
     clone: true
 
-- name: ls -la /tmp/lynis*
+- name: confirm lynis folder
   find:
     paths: $HOME
     patterns: "lynis*"
@@ -33,11 +33,16 @@
     chdir: $HOME/lynis
 
 - name: Print out report
-  shell: cat "$(hostname -s)_$(date +%d-%m-%Y).report"
+  shell: cat "$(HOME)/$(hostname -s)_$(date +%d-%m-%Y).report"
   args:
     chdir: $HOME/lynis
+  register: lynis_report
 
-- name: Remove lynis folder from tmp.
+- debug:
+    msg: "{{ [item.path] }} "
+  with_items: "{{ lynis_report }}"
+
+- name: Remove lynis folder
   file:
     path: $HOME/lynis
     state: absent
