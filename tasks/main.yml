@@ -1,13 +1,13 @@
 ---
-# - name: Install required system packages
-#   package:
-#     name:
-#       - findutils
-#       - procps
-#       - passwd
-#       - hostname
-#       - git
-#     state: latest
+- name: Install required system packages
+  package:
+    name:
+      - findutils
+      - procps
+      - passwd
+      - hostname
+      - git
+    state: latest
 
 - name: Clone git rep
   ansible.builtin.git:
@@ -26,17 +26,6 @@
 - debug:
     msg: "{{ [item.path] }} "
   with_items: "{{ found_directories.files }}"
-
-# - name: Run scan and output to file
-#   shell: cd $HOME/lynis && ./lynis audit system > "$(date +%d-%m-%Y).report"
-
-
-# - name: Change file ownership, group and permissions
-#   ansible.builtin.file:
-#     path: /tmp/lynis/
-#     owner: root
-#     group: root
-#     mode: '0777'
 
 - name: Run scan and output to file
   shell: ./lynis audit system > "$(hostname -s)_$(date +%d-%m-%Y).report"

@@ -12,16 +12,11 @@ galaxy_info:
         - all
     - name: Debian
       versions:
-        - wheezy
-        - jessie
-        - stretch
         - buster
         - bullseye
         - bookworm
     - name: Ubuntu
       versions:
-        - precise
-        - trusty
         - xenial
         - bionic
         - focal
