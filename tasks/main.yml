@@ -28,7 +28,7 @@
   with_items: "{{ found_directories.files }}"
 
 - name: Run scan and output to file
-  ansible.builtin.shell: ./lynis audit system > "$(date +%d-%m-%Y).report"
+  ansible.builtin.shell: ./lynis audit system
   args:
     chdir: /tmp/lynis/
 
