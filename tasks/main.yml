@@ -44,7 +44,7 @@
     chdir: $HOME/lynis
 
 - name: Print out report
-  shell: cat /tmp/"$(hostname -s)_$(date +%d-%m-%Y).report"
+  shell: cat "$(hostname -s)_$(date +%d-%m-%Y).report"
   args:
     chdir: $HOME/lynis
 
