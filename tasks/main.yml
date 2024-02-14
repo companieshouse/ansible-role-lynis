@@ -12,12 +12,12 @@
 - name: Clone git rep
   ansible.builtin.git:
     repo: 'https://github.com/CISOfy/lynis.git'
-    dest: /tmp/lynis
+    dest: $HOME/lynis
     clone: true
 
 - name: ls -la /tmp/lynis*
   find:
-    paths: /tmp
+    paths: $HOME
     patterns: "lynis*"
     recurse: true
     file_type: directory
@@ -28,7 +28,7 @@
   with_items: "{{ found_directories.files }}"
 
 - name: Run scan and output to file
-  shell: cd /tmp/lynis && ./lynis audit system > "$(date +%d-%m-%Y).report"
+  shell: cd $HOME/lynis && ./lynis audit system > "$(date +%d-%m-%Y).report"
 
 
 # - name: Change file ownership, group and permissions
