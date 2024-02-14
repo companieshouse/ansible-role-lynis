@@ -16,3 +16,18 @@ provisioner:
   name: ansible
   playbooks:
     converge: ${MOLECULE_PLAYBOOK:-converge.yml}
+scenario:
+  test_sequence:
+    - dependency
+    - lint
+    - cleanup
+    - destroy
+    - syntax
+    - create
+    - converge
+    - prepare
+    # - idempotence
+    - side_effect
+    - verify
+    - cleanup
+    - destroy
