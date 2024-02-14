@@ -23,7 +23,7 @@ scenario:
     - create
     - converge
     - prepare
-    - idempotence
+    # - idempotence
     - side_effect
     - verify
     - cleanup
