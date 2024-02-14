@@ -1,13 +1,13 @@
 ---
-- name: Install required system packages
-  package:
-    name:
-      - findutils
-      - procps
-      - passwd
-      - hostname
-      - git
-    state: latest
+# - name: Install required system packages
+#   package:
+#     name:
+#       - findutils
+#       - procps
+#       - passwd
+#       - hostname
+#       - git
+#     state: latest
 
 - name: Clone git rep
   ansible.builtin.git:
