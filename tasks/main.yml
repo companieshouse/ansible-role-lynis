@@ -39,7 +39,7 @@
   register: lynis_report
 
 - debug:
-    msg: "{{ [item.path] }} "
+    msg: "{{ [item] }} "
   with_items: "{{ lynis_report }}"
 
 - name: Remove lynis folder
