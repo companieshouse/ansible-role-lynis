@@ -4,7 +4,7 @@ galaxy_info:
   author: ch
   description: lynis scan
   company: "CH"
-  license: "license (BSD, MIT)"
+  license: "license (MIT)"
   min_ansible_version: 2.16
   platforms:
     - name: Fedora
