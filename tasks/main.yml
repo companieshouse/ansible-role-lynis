@@ -6,26 +6,43 @@
       - procps
       - passwd
       - hostname
+      - git
     state: latest
 
 - name: Clone git rep
   ansible.builtin.git:
     repo: 'https://github.com/CISOfy/lynis.git'
-    dest: /tmp/lynis
+    dest: $HOME/lynis
     clone: true
 
+- name: confirm lynis folder
+  find:
+    paths: $HOME
+    patterns: "lynis*"
+    recurse: true
+    file_type: directory
+  register: found_directories
+
+- debug:
+    msg: "{{ [item.path] }}"
+  with_items: "{{ found_directories.files }}"
+
 - name: Run scan and output to file
-  shell: ./lynis audit system > /tmp/"$(hostname -s)_$(date +%d-%m-%Y).report"
+  shell: ./lynis audit system > "$(hostname -s)_$(date +%d-%m-%Y).report"
   args:
-    chdir: /tmp/lynis
-  become: true
+    chdir: $HOME/lynis
 
 - name: Print out report
-  shell: cat /tmp/"$(hostname -s)_$(date +%d-%m-%Y).report"
+  shell: cat "$(hostname -s)_$(date +%d-%m-%Y).report"
   args:
-    chdir: /tmp/lynis
+    chdir: $HOME/lynis
+  register: lynis_report
 
-- name: Remove lynis folder from tmp
+- debug:
+    msg: "{{ [item] }} "
+  with_items: "{{ lynis_report.stdout }}"
+
+- name: Remove lynis folder
   file:
-    path: /tmp/lynis
+    path: $HOME/lynis
     state: absent

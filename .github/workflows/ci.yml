@@ -36,36 +36,37 @@ jobs:
           yamllint .
 
   molecule:
-  name: Molecule
-  runs-on: ubuntu-latest
-  strategy:
-    matrix:
-      distro:
-        - rockylinux9
-        - rockylinux8
-        - ubuntu2204
-        - ubuntu2004
-        - debian12
-        - debian11
-        - amazonlinux2023
+    name: Molecule
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        distro:
+          - rockylinux9
+          - rockylinux8
+          - ubuntu2204
+          - ubuntu2004
+          - debian12
+          - debian11
+          - amazonlinux2
+          - amazonlinux2023
 
-  steps:
-    - name: Check out the codebase.
-      uses: actions/checkout@v4
-      with:
-        path: 'ch.lynis'
+    steps:
+      - name: Check out the codebase.
+        uses: actions/checkout@v4
+        with:
+          path: 'ch.lynis'
 
-    - name: Set up Python 3.
-      uses: actions/setup-python@v5
-      with:
-        python-version: '3.x'
+      - name: Set up Python 3.
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
 
-    - name: Install test dependencies.
-      run: pip3 install ansible molecule molecule-plugins[docker] docker
+      - name: Install test dependencies.
+        run: pip3 install ansible molecule molecule-plugins[docker] docker
 
-    - name: Run Molecule tests.
-      run: molecule test
-      env:
-        PY_COLORS: '1'
-        ANSIBLE_FORCE_COLOR: '1'
-        MOLECULE_DISTRO: ${{ matrix.distro }}
+      - name: Run Molecule tests.
+        run: molecule test
+        env:
+          PY_COLORS: '1'
+          ANSIBLE_FORCE_COLOR: '1'
+          MOLECULE_DISTRO: ${{ matrix.distro }}
